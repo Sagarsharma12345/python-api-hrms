@@ -1,5 +1,5 @@
 from rest_framework.viewsets import ModelViewSet
-from rest_framework.permissions import IsAdminUser
+from rest_framework.permissions import IsAdminUser, AllowAny
 from .models import Employee
 from .serializers import EmployeeSerializer
 from common.utils import api_response
@@ -8,7 +8,8 @@ from common.utils import api_response
 class EmployeeViewSet(ModelViewSet):
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
-    permission_classes = [IsAdminUser]
+    # permission_classes = [IsAdminUser]
+    permission_classes = [AllowAny]
 
     # ===== FILTERING =====
     def get_queryset(self):

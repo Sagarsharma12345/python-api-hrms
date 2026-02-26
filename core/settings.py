@@ -33,7 +33,7 @@ CORS_ALLOWED_ORIGINS = ["https://hrms.trafficvenue.co.in", "http://localhost:517
 CSRF_TRUSTED_ORIGINS = ["https://hrms.trafficvenue.co.in", "http://localhost:5173"]
 
 CORS_ALLOW_CREDENTIALS = True
-CORS_ALLOWED_ORIGINS = ["https://hrms.trafficvenue.co.in",]
+CORS_ALLOWED_ORIGINS = ["https://hrms.trafficvenue.co.in", "http://localhost:5173"]
 
 
 # Application definition
@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     'accounts',
     'employees',
     'attendance',
-    'rest_framework_simplejwt.token_blacklist',
+    # 'rest_framework_simplejwt.token_blacklist',
 ]
 
 MIDDLEWARE = [
@@ -74,10 +74,11 @@ SIMPLE_JWT = {
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework_simplejwt.authentication.JWTAuthentication",
+        # "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
     "DEFAULT_PERMISSION_CLASSES": (
-        "rest_framework.permissions.IsAuthenticated",
+        # "rest_framework.permissions.IsAuthenticated",
+        "rest_framework.permissions.AllowAny",
     ),
     'EXCEPTION_HANDLER': 'common.exception.custom_exception_handler'
 }
@@ -105,12 +106,12 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 #### Cloud MySQL Database
 DATABASES = {
